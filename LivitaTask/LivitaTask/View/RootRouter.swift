@@ -23,7 +23,7 @@ struct RootRouter: View {
                                 .background(LinearGradientEnum.primary.linearGradientColors)
                                 .clipShape(RoundedRectangle(cornerRadius: 96))
                                 .font(FontEnum.buttonBold.font)
-                                .foregroundStyle(ColorEnum.white.color)
+                                .foregroundStyle(ColorEnum.customWhite.color)
                         }),
                     centerView:
                         EmptyView(),

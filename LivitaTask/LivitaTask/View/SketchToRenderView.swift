@@ -33,7 +33,7 @@ struct SketchToRenderView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 48)
-                        .background(ColorEnum.white.color)
+                        .background(ColorEnum.customWhite.color)
                         .clipShape(RoundedRectangle(cornerRadius: 40))
                         .overlay {
                             RoundedRectangle(cornerRadius: 40)
@@ -51,7 +51,7 @@ struct SketchToRenderView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 48)
-                        .background(ColorEnum.white.color)
+                        .background(ColorEnum.customWhite.color)
                         .clipShape(RoundedRectangle(cornerRadius: 40))
                         .overlay {
                             RoundedRectangle(cornerRadius: 40)
@@ -66,18 +66,18 @@ struct SketchToRenderView: View {
                         Image(IconEnum.iconArrow.icon)
                         Text("Regenerate")
                             .font(FontEnum.body1medium.font)
-                            .foregroundStyle(ColorEnum.white.color)
+                            .foregroundStyle(ColorEnum.customWhite.color)
                     }
                     .frame(maxWidth: .infinity)
                     .frame(height: 56)
-                    .background(ColorEnum.black.color)
+                    .background(ColorEnum.customBlack.color)
                     .clipShape(RoundedRectangle(cornerRadius: 40))
                 }
                 .padding([.bottom, .top])
                 
             }
             .padding(.horizontal)
-            .foregroundStyle(ColorEnum.black.color)
+            .foregroundStyle(ColorEnum.customBlack.color)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(ColorEnum.grey20.color)
@@ -101,7 +101,7 @@ struct SketchToRenderView: View {
                             Text("Before")
                                 .frame(width: 56, height: 26)
                                 .background(ColorEnum.white80.color)
-                                .foregroundStyle(ColorEnum.black.color)
+                                .foregroundStyle(ColorEnum.customBlack.color)
                                 .clipShape(RoundedRectangle(cornerRadius: 96))
                                 .opacity(isDragging ? 0 : 1)
                                 .animation(.easeInOut(duration: 0.2), value: isDragging)
@@ -118,7 +118,7 @@ struct SketchToRenderView: View {
                             Text("After")
                                 .frame(width: 56, height: 26)
                                 .background(ColorEnum.white80.color)
-                                .foregroundStyle(ColorEnum.black.color)
+                                .foregroundStyle(ColorEnum.customBlack.color)
                                 .clipShape(RoundedRectangle(cornerRadius: 96))
                                 .opacity(isDragging ? 0 : 1)
                                 .animation(.easeInOut(duration: 0.2), value: isDragging)
@@ -128,14 +128,14 @@ struct SketchToRenderView: View {
                     
                     ZStack {
                         Rectangle()
-                            .fill(ColorEnum.white.color)
+                            .fill(ColorEnum.customWhite.color)
                             .frame(width: 4)
                         Image(IconEnum.chevronUpChevronDown.icon)
                             .resizable()
                             .scaledToFit()
                             .padding(10)
                             .frame(width: 44, height: 44)
-                            .background(ColorEnum.white.color)
+                            .background(ColorEnum.customWhite.color)
                             .clipShape(Circle())
                             .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
                     }

@@ -45,7 +45,7 @@ struct ToolsCardComponent: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(designModel.title)
                             .font(FontEnum.body1semibold.font)
-                            .foregroundStyle(ColorEnum.black.color)
+                            .foregroundStyle(ColorEnum.customBlack.color)
                         Text(designModel.description)
                             .font(FontEnum.body2regular.font)
                             .foregroundStyle(ColorEnum.grey60.color)
@@ -57,7 +57,7 @@ struct ToolsCardComponent: View {
                     } label: {
                         Image(IconEnum.arrowRight.icon)
                             .frame(width: 49, height: 32)
-                            .background(ColorEnum.black.color)
+                            .background(ColorEnum.customBlack.color)
                             .clipShape(RoundedRectangle(cornerRadius: 60))
                     }
                     
@@ -66,7 +66,7 @@ struct ToolsCardComponent: View {
                 
             }
             .frame(maxWidth: .infinity)
-            .background(ColorEnum.white.color)
+            .background(ColorEnum.customWhite.color)
             .cornerRadius(20)
             .overlay {
                 RoundedRectangle(cornerRadius: 20)

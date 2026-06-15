@@ -26,16 +26,16 @@ struct NavigationBarComponent: View {
                             Text(screen.rawValue.capitalized)
                                 .font(FontEnum.barFont.font)
                         }
-                        .foregroundStyle(screen == routerVM.screen ? ColorEnum.black.color : ColorEnum.grey50.color)
+                        .foregroundStyle(screen == routerVM.screen ? ColorEnum.customBlack.color : ColorEnum.grey50.color)
                     }
                     .padding(.vertical)
                     Spacer()
                 }
             }
-            .background(ColorEnum.white.color)
+            .background(ColorEnum.customWhite.color)
             .overlay {
                 RoundedRectangle(cornerRadius: 96)
-                    .stroke(ColorEnum.white.color)
+                    .stroke(ColorEnum.customWhite.color)
             }
             .shadow(
                 color: .black.opacity(0.04),
