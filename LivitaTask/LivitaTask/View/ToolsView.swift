@@ -10,11 +10,15 @@ import SwiftUI
 struct ToolsView: View {
     var body: some View {
         VStack(spacing: 0) {
-            ScrollView(showsIndicators: false) {
-                ForEach(GlobalConstant.mocData, id: \.self) { designModel in
-                    ToolsCardComponent(designModel: designModel)
-                        .padding(.horizontal)
+            ScrollView {
+                VStack(spacing: 8) {
+                    ForEach(GlobalConstant.mocData, id: \.self) { designModel in
+                        ToolsCardComponent(designModel: designModel)
+                            .padding(.horizontal)
+                            .padding(.vertical, 0)
+                    }
                 }
+                .padding(.top, 12)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

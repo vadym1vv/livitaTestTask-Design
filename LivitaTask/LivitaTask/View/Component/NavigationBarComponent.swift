@@ -12,11 +12,9 @@ struct NavigationBarComponent: View {
     @EnvironmentObject private var routerVM: RouterVM
     
     var body: some View {
-        ZStack {
-            LinearGradientEnum.whiteGradient.linearGradientColors
-            HStack {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
                 ForEach(ScreenEnum.allCases) { screen in
-                    Spacer()
                     Button {
                         routerVM.performNavigation(screen: screen)
                     } label: {
@@ -28,28 +26,21 @@ struct NavigationBarComponent: View {
                         }
                         .foregroundStyle(screen == routerVM.screen ? ColorEnum.customBlack.color : ColorEnum.grey50.color)
                     }
-                    .padding(.vertical)
-                    Spacer()
+                    .frame(maxWidth: .infinity)
                 }
             }
-            .background(ColorEnum.customWhite.color)
-            .overlay {
-                RoundedRectangle(cornerRadius: 96)
-                    .stroke(ColorEnum.customWhite.color)
-            }
-            .shadow(
-                color: .black.opacity(0.04),
-                radius: 4,
-                x: 2,
-                y: 2
-            )
-            .clipShape(RoundedRectangle(cornerRadius: 96))
-            .padding(.horizontal)
-            .padding(.bottom, 20)
-            
+            .padding(.horizontal, 24)
+        }
+        .overlay {
+            RoundedRectangle(cornerRadius: 96)
+                .stroke(ColorEnum.customWhite.color)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: UIScreen.main.bounds.height / 10)
+        .frame(height: 62)
+        .background(ColorEnum.customWhite.color)
+        .clipShape(RoundedRectangle(cornerRadius: 96))
+        .shadow(color: Color.black.opacity(0.04), radius: 8, x: 2, y: 2)
+        .padding(.horizontal, 16)
     }
 }
 

@@ -12,21 +12,19 @@ struct SketchToRenderView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var sliderPercentage: CGFloat = 0.5
-    @State private var isDragging = false
     
     let designModel: DesignModel
     
     var body: some View {
-        VStack {
-            VStack {
+        VStack(spacing: 0) {
+            VStack(spacing: 0) {
                 ImgComparisonComponent()
-                    .padding(.top)
                 Spacer()
-                HStack {
+                HStack(spacing: 8) {
                     Button {
                         dismiss()
                     } label: {
-                        HStack {
+                        HStack(spacing: 6) {
                             Image(IconEnum.save.icon)
                             Text("Resize")
                                 .font(FontEnum.body2Medium.font)
@@ -44,7 +42,7 @@ struct SketchToRenderView: View {
                     Button {
                         dismiss()
                     } label: {
-                        HStack {
+                        HStack(spacing: 6) {
                             Image(IconEnum.resize.icon)
                             Text("Save")
                                 .font(FontEnum.body2Medium.font)
@@ -62,7 +60,7 @@ struct SketchToRenderView: View {
                 Button {
                     dismiss()
                 } label: {
-                    HStack {
+                    HStack(spacing: 8) {
                         Image(IconEnum.iconArrow.icon)
                         Text("Regenerate")
                             .font(FontEnum.body1medium.font)
@@ -73,14 +71,16 @@ struct SketchToRenderView: View {
                     .background(ColorEnum.customBlack.color)
                     .clipShape(RoundedRectangle(cornerRadius: 40))
                 }
-                .padding([.bottom, .top])
-                
+                .padding(.top, 16)
             }
-            .padding(.horizontal)
+            .padding(.horizontal, 16)
+            .padding(.bottom, getSafeArea().bottom + 16)
+            .padding(.top, getSafeArea().top + 48)
             .foregroundStyle(ColorEnum.customBlack.color)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(ColorEnum.grey20.color)
+        .ignoresSafeArea()
         .navigationBarHidden(true)
     }
     
@@ -93,20 +93,34 @@ struct SketchToRenderView: View {
                 let currentDragX = totalWidth * sliderPercentage
                 
                 ZStack(alignment: .leading) {
+                    VStack {
+                        HStack {
+                            Text("Before")
+                                .frame(width: 56, height: 26)
+                                .background(ColorEnum.white80.color)
+                                .font(FontEnum.body2semibold.font)
+                                .foregroundStyle(ColorEnum.customBlack.color)
+                                .clipShape(RoundedRectangle(cornerRadius: 96))
+                                .padding()
+                            Spacer()
+                            Text("After")
+                                .frame(width: 56, height: 26)
+                                .background(ColorEnum.white80.color)
+                                .font(FontEnum.body2semibold.font)
+                                .foregroundStyle(ColorEnum.customBlack.color)
+                                .clipShape(RoundedRectangle(cornerRadius: 96))
+                                .padding()
+                        }
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .background(LinearGradientEnum.blackGradient.linearGradientColors)
+                        Spacer()
+                    }
+                    .zIndex(1)
                     Image(designModel.imgAfter)
                         .resizable()
                         .scaledToFill()
                         .frame(width: totalWidth, height: totalHeight)
-                        .overlay(alignment: .topTrailing) {
-                            Text("Before")
-                                .frame(width: 56, height: 26)
-                                .background(ColorEnum.white80.color)
-                                .foregroundStyle(ColorEnum.customBlack.color)
-                                .clipShape(RoundedRectangle(cornerRadius: 96))
-                                .opacity(isDragging ? 0 : 1)
-                                .animation(.easeInOut(duration: 0.2), value: isDragging)
-                                .padding()
-                        }
                         .clipped()
                     
                     Image(designModel.imgBefore)
@@ -114,48 +128,32 @@ struct SketchToRenderView: View {
                         .scaledToFill()
                         .frame(width: totalWidth, height: totalHeight)
                         .frame(width: currentDragX, height: totalHeight, alignment: .leading)
-                        .overlay(alignment: .topLeading) {
-                            Text("After")
-                                .frame(width: 56, height: 26)
-                                .background(ColorEnum.white80.color)
-                                .foregroundStyle(ColorEnum.customBlack.color)
-                                .clipShape(RoundedRectangle(cornerRadius: 96))
-                                .opacity(isDragging ? 0 : 1)
-                                .animation(.easeInOut(duration: 0.2), value: isDragging)
-                                .padding()
-                        }
                         .clipped()
-                    
                     ZStack {
                         Rectangle()
                             .fill(ColorEnum.customWhite.color)
                             .frame(width: 4)
-                        Image(IconEnum.chevronUpChevronDown.icon)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(10)
+                        Circle()
                             .frame(width: 44, height: 44)
-                            .background(ColorEnum.customWhite.color)
-                            .clipShape(Circle())
+                            .foregroundStyle(ColorEnum.customWhite.color)
+                            .overlay {
+                                Image(IconEnum.chevronUpChevronDown.icon)
+                            }
                             .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 4)
                     }
-                    .frame(width: 40, height: totalHeight)
-                    .contentShape(Rectangle())
-                    .offset(x: currentDragX - 20)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { value in
-                                isDragging = true
-                                let newX = value.location.x
-                                let boundedX = max(0, min(totalWidth, newX))
-                                withAnimation(.linear(duration: 0)) {
-                                    self.sliderPercentage = boundedX / totalWidth
+                        .contentShape(Rectangle())
+                        .offset(x: currentDragX - 20)
+                        .gesture(
+                            DragGesture()
+                                .onChanged { value in
+                                    let newX = value.location.x
+                                    let boundedX = max(0, min(totalWidth, newX))
+                                    withAnimation(.linear(duration: 0)) {
+                                        self.sliderPercentage = boundedX / totalWidth
+                                    }
                                 }
-                            }
-                            .onEnded { _ in
-                                isDragging = false
-                            }
-                    )
+                               
+                        )
                 }
             }
             .frame(height: 436)

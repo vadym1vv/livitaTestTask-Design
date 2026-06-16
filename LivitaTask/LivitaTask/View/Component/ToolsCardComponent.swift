@@ -12,7 +12,7 @@ struct ToolsCardComponent: View {
     let designModel: DesignModel
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             VStack(spacing: 0) {
                 NavigationLink {
                     SketchToRenderView(designModel: designModel)
@@ -25,17 +25,17 @@ struct ToolsCardComponent: View {
                             Image(designModel.imgBefore)
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: halfWidth, height: geometry.size.height, alignment: .leading)
+                                .frame(width: halfWidth, height: 129, alignment: .leading)
                                 .clipped()
                             
                             Image(designModel.imgAfter)
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: halfWidth, height: geometry.size.height, alignment: .trailing)
+                                .frame(width: halfWidth, height: 129, alignment: .trailing)
                                 .clipped()
                         }
                     }
-                    .frame(maxHeight: 129)
+                    .frame(height: 129)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
                 .padding([.top, .horizontal], 12)
@@ -55,14 +55,18 @@ struct ToolsCardComponent: View {
                     NavigationLink {
                         SketchToRenderView(designModel: designModel)
                     } label: {
-                        Image(IconEnum.arrowRight.icon)
+                        RoundedRectangle(cornerRadius: 60)
                             .frame(width: 49, height: 32)
-                            .background(ColorEnum.customBlack.color)
-                            .clipShape(RoundedRectangle(cornerRadius: 60))
+                            .foregroundStyle(ColorEnum.customBlack.color)
+                            .overlay {
+                                Image(systemName:"arrow.right")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundStyle(ColorEnum.customWhite.color)
+                            }
                     }
-                    
+                    .shadow(color: Color.black.opacity(0.04), radius: 16, x: 5, y: 4)
                 }
-                .padding([.bottom, .horizontal])
+                .padding([.bottom, .horizontal], 12)
                 
             }
             .frame(maxWidth: .infinity)
@@ -73,12 +77,18 @@ struct ToolsCardComponent: View {
                     .stroke(ColorEnum.grey20.color)
             }
         }
-        .frame(minHeight: 226)
     }
 }
 
 #Preview {
-        ToolsCardComponent(designModel: GlobalConstant.mocData[1])
-            .padding(.horizontal)
+    ScrollView {
+        VStack(spacing: 8){
+            ForEach(GlobalConstant.mocData, id: \.self) { designModel in
+                ToolsCardComponent(designModel: designModel)
+                    .padding(.horizontal)
+                    .padding(.vertical, 0)
+            }
+        }
+    }
 }
 

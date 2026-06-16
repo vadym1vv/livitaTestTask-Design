@@ -25,6 +25,7 @@
 		93A0B7D12FE0623200751D55 /* GlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A0B7D02FE0623200751D55 /* GlobalConstant.swift */; };
 		93A0B7D32FE0668300751D55 /* ToolsCardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A0B7D22FE0668300751D55 /* ToolsCardComponent.swift */; };
 		93A0B7D52FE06D1700751D55 /* SketchToRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A0B7D42FE06D1700751D55 /* SketchToRenderView.swift */; };
+		93DE04472FE183810060A29A /* LayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE04462FE183810060A29A /* LayoutExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		93A0B7D02FE0623200751D55 /* GlobalConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstant.swift; sourceTree = "<group>"; };
 		93A0B7D22FE0668300751D55 /* ToolsCardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCardComponent.swift; sourceTree = "<group>"; };
 		93A0B7D42FE06D1700751D55 /* SketchToRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchToRenderView.swift; sourceTree = "<group>"; };
+		93DE04462FE183810060A29A /* LayoutExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		93A0B7AD2FE0433100751D55 /* LivitaTask */ = {
 			isa = PBXGroup;
 			children = (
+				93DE04452FE1836C0060A29A /* Extension */,
 				93A0B7B42FE0434400751D55 /* ViewModel */,
 				93A0B7B32FE0433F00751D55 /* Component */,
 				93A0B7B22FE0433A00751D55 /* View */,
@@ -139,6 +142,14 @@
 				93A0B7D22FE0668300751D55 /* ToolsCardComponent.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		93DE04452FE1836C0060A29A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				93DE04462FE183810060A29A /* LayoutExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +227,7 @@
 				93A0B7D52FE06D1700751D55 /* SketchToRenderView.swift in Sources */,
 				93A0B7CF2FE061C800751D55 /* DesignModel.swift in Sources */,
 				93A0B7D32FE0668300751D55 /* ToolsCardComponent.swift in Sources */,
+				93DE04472FE183810060A29A /* LayoutExtension.swift in Sources */,
 				93A0B7B82FE0438500751D55 /* ScreenEnum.swift in Sources */,
 				93A0B7BA2FE046A700751D55 /* LinearGradientEnum.swift in Sources */,
 				93A0B7CC2FE04FBB00751D55 /* NavigationBarComponent.swift in Sources */,

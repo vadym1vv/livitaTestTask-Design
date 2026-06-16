@@ -32,22 +32,35 @@ struct RootRouter: View {
                             
                         }, label: {
                             Image(IconEnum.topBarPerson.icon)
+                                .frame(width: 44, height: 44)
                         })
                 )
+                .padding(.top, getSafeArea().top)
+                
                 ZStack {
                     routerVM.screen.view
                     VStack {
                         Spacer()
-                        NavigationBarComponent()
-                            .environmentObject(routerVM)
-                            
+                        ZStack {
+                            VStack {
+                                NavigationBarComponent()
+                                    .environmentObject(routerVM)
+                                    
+                                Spacer()
+                            }
+                            .zIndex(1)
+                            LinearGradientEnum.whiteGradient.linearGradientColors
+                        }
+                        .frame(height: 96)
+                        .frame(maxWidth: .infinity)
                     }
                 }
-                .ignoresSafeArea()
+                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(ColorEnum.grey20.color)
+            .ignoresSafeArea()
             
         }
     }

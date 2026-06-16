@@ -28,6 +28,7 @@ struct TopBarNavigationComponent<LeadingView: View, CenterView: View, TrailingVi
                 }
             }
         }
+        .frame(height: 44)
     }
 }
 
